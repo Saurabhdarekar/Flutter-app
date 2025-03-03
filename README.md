@@ -4,6 +4,9 @@ A Flutter application that uses the `flutter_bluetooth_serial` package.
 
 ## Table of Contents
 - [Overview](#overview)
+- [Setting Up Flutter](#setting-up-flutter)
+  - [Installing Flutter on macOS](#installing-flutter-on-macos)
+  - [Installing Flutter on Windows](#installing-flutter-on-windows)
 - [Running the Application](#running-the-application)
 - [Building the APK](#building-the-apk)
 - [Setting Up Android SDK (macOS)](#setting-up-android-sdk-macos)
@@ -14,6 +17,51 @@ A Flutter application that uses the `flutter_bluetooth_serial` package.
 ## Overview
 
 This project is a starting point for a Flutter application that integrates Bluetooth functionality using the `flutter_bluetooth_serial` package.
+
+## Setting Up Flutter
+
+### Installing Flutter on macOS
+
+1. **Download Flutter**
+   ```bash
+   curl -O https://storage.googleapis.com/flutter_infra_release/releases/stable/macos/flutter_macos_3.10.6-stable.zip
+   ```
+   Extract the downloaded zip and move it to the desired location:
+   ```bash
+   unzip flutter_macos_3.10.6-stable.zip
+   mv flutter ~/development/flutter
+   ```
+
+2. **Update Environment Variables**
+   Add Flutter to the PATH:
+   ```bash
+   export PATH="$PATH:$HOME/development/flutter/bin"
+   ```
+   To make this change permanent, add the line above to `~/.zshrc` or `~/.bashrc`, depending on your shell.
+
+3. **Install Dependencies**
+   ```bash
+   brew install cocoapods
+   flutter doctor
+   ```
+   Follow any additional installation steps suggested by `flutter doctor`.
+
+### Installing Flutter on Windows
+
+1. **Download Flutter**
+   - Download the Flutter SDK from [Flutter Official Site](https://flutter.dev/docs/get-started/install/windows)
+   - Extract it to `C:\src\flutter`
+
+2. **Update Environment Variables**
+   - Open **Edit environment variables** from the Start menu.
+   - Add `C:\src\flutter\bin` to the **Path** variable.
+
+3. **Install Dependencies**
+   - Run:
+     ```cmd
+     flutter doctor
+     ```
+   - Install any missing dependencies reported by `flutter doctor`.
 
 ## Running the Application
 
@@ -55,101 +103,52 @@ This project is a starting point for a Flutter application that integrates Bluet
 
 ## Setting Up Android SDK (macOS)
 
-### 1. Install Android Command-Line Tools
-Open Terminal and install via Homebrew:
-```bash
-brew install android-commandlinetools
-```
+1. **Install Android Command-Line Tools**
+   ```bash
+   brew install android-commandlinetools
+   ```
 
-### 2. Create the Android SDK Directory
-```bash
-mkdir -p ~/Library/Android/sdk
-```
+2. **Create the Android SDK Directory**
+   ```bash
+   mkdir -p ~/Library/Android/sdk
+   ```
 
-### 3. Install Essential SDK Packages
-```bash
-sdkmanager --sdk_root=$HOME/Library/Android/sdk "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
-```
+3. **Install Essential SDK Packages**
+   ```bash
+   sdkmanager --sdk_root=$HOME/Library/Android/sdk "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
+   ```
 
-### 4. Configure Environment Variables
+4. **Configure Environment Variables**
+   Add these to `~/.zshrc` or `~/.bashrc`:
+   ```bash
+   export ANDROID_HOME=$HOME/Library/Android/sdk
+   export PATH=$ANDROID_HOME/platform-tools:$PATH
+   ```
 
-#### For zsh (Default on macOS Catalina & later)
-Edit your `~/.zshrc`:
-```bash
-nano ~/.zshrc
-```
-Add these lines at the end:
-```bash
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
-export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
-```
-Save and apply:
-```bash
-source ~/.zshrc
-```
-
-#### For bash
-Edit your `~/.bashrc`:
-```bash
-nano ~/.bashrc
-```
-Add the same environment variables, then apply:
-```bash
-source ~/.bashrc
-```
-
-### 5. Verify the Installation
-Check if Flutter detects the Android SDK:
-```bash
-flutter doctor
-```
-Resolve any issues that appear.
-
-### 6. Run the Flutter Project
-```bash
-flutter run
-```
+5. **Verify Installation**
+   ```bash
+   flutter doctor
+   ```
 
 ## Setting Up Android SDK (Windows)
 
-### 1. Install Android Command-Line Tools
-1. Download the [Android Command Line Tools](https://developer.android.com/studio#command-tools).
-2. Extract the downloaded ZIP to `C:\Android\cmdline-tools`.
-3. Rename the extracted folder to `latest` so that your path becomes:
+1. **Install Android Command-Line Tools**
+   - Download from [Android Developer](https://developer.android.com/studio#command-tools)
+   - Extract it to `C:\Android\cmdline-tools\latest`
+
+2. **Install SDK Packages**
+   ```cmd
+   cd C:\Android\cmdline-tools\latest\bin
+   sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
    ```
-   C:\Android\cmdline-tools\latest
+
+3. **Configure Environment Variables**
+   - Add `C:\Android\platform-tools` and `C:\Android\cmdline-tools\latest\bin` to **Path**.
+
+4. **Verify Installation**
+   ```cmd
+   flutter doctor
    ```
-
-### 2. Install Essential SDK Packages
-Open **Command Prompt** as Administrator, then run:
-```batch
-cd C:\Android\cmdline-tools\latest\bin
-sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "cmdline-tools;latest"
-```
-
-### 3. Configure Environment Variables
-1. Open **Start Menu** and search for **Environment Variables**. Click on **Edit the system environment variables**.
-2. In the **System Properties** window, click **Environment Variables**.
-3. Under **User variables**, add:
-   - `ANDROID_HOME` = `C:\Android`
-   - `ANDROID_SDK_ROOT` = `C:\Android`
-4. Edit the **Path** variable and add:
-   - `C:\Android\platform-tools`
-   - `C:\Android\cmdline-tools\latest\bin`
-   - `C:\Android\build-tools\34.0.0`
-
-### 4. Verify the Installation
-Restart **Command Prompt** and run:
-```batch
-flutter doctor
-```
-Address any missing dependencies as reported.
-
-### 5. Run the Flutter Project
-```batch
-flutter run
-```
 
 ## Getting Started
 
